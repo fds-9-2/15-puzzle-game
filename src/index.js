@@ -1,7 +1,7 @@
 import prettierShowArr from "./debugging";
-import fifteenPuzzle from "./fifteenPuzzle";
+import FifteenPuzzle from "./FifteenPuzzle";
 
-const game = new fifteenPuzzle();
+const game = new FifteenPuzzle();
 const cells = document.querySelectorAll('.puzzle__cell');
 const startBtnEl = document.querySelector('.btn--start');
 const restartBtnEl = document.querySelector('.btn--restart');
@@ -18,7 +18,7 @@ let setCountTime;
 // 게임 시작
 function gameInit() {
   game.init();
-  const flattenedPuzzle = fifteenPuzzle.flattenPuzzle(game.puzzle);
+  const flattenedPuzzle = FifteenPuzzle.flattenPuzzle(game.puzzle);
   cells.forEach((item, index) => {
     item.dataset.idx = flattenedPuzzle.indexOf(index);
   });
@@ -29,12 +29,12 @@ function gameInit() {
     timeEl.textContent = calcTime();
   }, 1000);
 }
+
+// 타이머로 구한 시간 00:00 형태로 만드는 함수
 function calcTime() {
   let minutes = Math.floor(time / 60);
   let seconds = time % 60;
-  function convert(n) {
-    return n < 10 ? `0${n}`: n;
-  }
+  const convert = n => n < 10 ? `0${n}`: n;
   return `${convert(minutes)}:${convert(seconds)}`;
 }
 
@@ -52,7 +52,7 @@ cells.forEach((item, index) => {
   item.addEventListener('click', () => {
     game.updatePuzzle(index);
     prettierShowArr(game.puzzle, '클릭 후 변경된 퍼즐');
-    const flattenedPuzzle = fifteenPuzzle.flattenPuzzle(game.puzzle);
+    const flattenedPuzzle = FifteenPuzzle.flattenPuzzle(game.puzzle);
     cells.forEach((item, index) => {
       item.dataset.idx = flattenedPuzzle.indexOf(index);
     });
@@ -76,6 +76,3 @@ startBtnEl.addEventListener('click', e => {
   gameReset();
   modalEl.classList.remove('modal--start', 'modal--end');
 });
-
-
-

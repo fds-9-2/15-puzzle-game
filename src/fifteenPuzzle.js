@@ -1,6 +1,6 @@
 import prettierShowArr from "./debugging";
 
-export default class fifteenPuzzle {
+export default class FifteenPuzzle {
   static flattenPuzzle(arr) {
     const flattenedPuzzle = [];
     for(let i = 0; i < 4; i++) {
@@ -30,7 +30,7 @@ export default class fifteenPuzzle {
   }
   // 게임에 규칙에 유효한 배열인지 확인하는 함수 
   isAvailableGame(arr) {
-    console.log(`만들어진 배열이 아래에서 유효한지 확인합니다. ${arr}`);
+    // console.log(`만들어진 배열이 아래에서 유효한지 확인합니다. ${arr}`);
     let count = 0;
     const blankIndex = arr.indexOf(this.blank);
     // 반전쌍의 개수 카운트
@@ -60,10 +60,10 @@ export default class fifteenPuzzle {
         )
       )
     ) {
-      console.log(`[유효]반전쌍의 개수: ${count} / 빈칸의 인덱스: ${blankIndex}`);
+      // console.log(`[유효]반전쌍의 개수: ${count} / 빈칸의 인덱스: ${blankIndex}`);
       return true;
     } else {
-      console.log(`[재배열!]반전쌍의 개수: ${count} / 빈칸의 인덱스: ${blankIndex}`);
+      // console.log(`[재배열!]반전쌍의 개수: ${count} / 빈칸의 인덱스: ${blankIndex}`);
       return false;
     }
   }
@@ -166,6 +166,6 @@ export default class fifteenPuzzle {
   }
   // 퍼즐이 다 정렬되었는지 확인하여 Boolean값 반환
   checkFinish() {
-    return fifteenPuzzle.flattenPuzzle(this.puzzle).every((item, index, arr) => index === 0 ? true : item > arr[index - 1]); 
+    return FifteenPuzzle.flattenPuzzle(this.puzzle).every((item, index, arr) => index === 0 ? true : item > arr[index - 1]); 
   }
 }
